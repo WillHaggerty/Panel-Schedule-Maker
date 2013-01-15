@@ -1,4 +1,9 @@
 <?php
+################################################################
+#              Scripted by: Will Haggerty                      #
+#                  January 13, 2013                            #
+#            Please leave this comment intact                  #
+################################################################
 require('config.php');
 
 $con = mysql_connect($server['server'],$server['username'],$server['password']);
@@ -61,25 +66,14 @@ mysql_close($con);
 <form name='add_panel' action='enter.php' method='post'>
 <fieldset class='no-border'>
 <p>Please enter the job name</p>
-<input type='text' name='job_name' tabindex='1' list='jobs' required>
-<datalist id='jobs'>
-<?php
-if (!empty($storeArray)) {
-foreach ($storeArray as $value) {
-echo '<option>'.$value['job_name'].'</option>';
-}
-}
-?>
-</datalist>
+<input type='text' name='job_name' tabindex='1' required>
 <p>Or select one from the list:</p>
 <select name='job-list' class='job-list' size='2' onclick="var s = this.form.elements['job-list'];
-    this.form.elements['job_name'].value = s.options[s.selectedIndex].textContent">
+    this.form.elements['job_name'].value = s.options[s.selectedIndex].textContent" <?php if (empty($storeArray)) {echo "disabled";} ?>>
 <?php
 if (!empty($storeArray)) {
-foreach ($storeArray as $value) {
-echo "<option value='$value[index]'>$value[job_name]</option>";
-}
-}
+foreach ($storeArray as $value) {echo "<option value='$value[index]'>$value[job_name]</option>";}
+} else {echo "<option> No jobs in database</option>";}
 ?>
 </select>
 </fieldset>
@@ -88,6 +82,6 @@ echo "<option value='$value[index]'>$value[job_name]</option>";
 </fieldset>
 <input style='width: 250px;' type='submit' tabindex='5'>
 </form>
-
+<p><a href='view.php'>View a panel.</a></p>
 </body>
 </html>

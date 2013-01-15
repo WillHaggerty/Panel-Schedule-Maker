@@ -1,4 +1,9 @@
 <?php
+################################################################
+#              Scripted by: Will Haggerty                      #
+#                  January 13, 2013                            #
+#            Please leave this comment intact                  #
+################################################################ 
 require('config.php');
 ?>
 <!doctype html>
@@ -62,6 +67,22 @@ xmlhttp.send();
  padding: 1px 4px 1px 4px;
  font-size: 14px;
 }
+.nobottom {
+ border-width: 1px 1px 0px 1px;
+ border-color: black;
+ border-style: solid;
+ width: 125px;
+ padding: 1px 4px 1px 4px;
+ font-size: 14px;
+}
+.joined {
+ border-width: 0px 1px 0px 1px;
+ border-color: black;
+ border-style: solid;
+ width: 125px;
+ padding: 1px 4px 1px 4px;
+ font-size: 14px;
+}
 .thebox {
  float: left;
  min-width: 200px;
@@ -72,6 +93,9 @@ xmlhttp.send();
  min-width: 200px;
  height: 200px;
  font-size: 14px;
+}
+.no-border {
+ border: 0px white solid;
 }
 </style>
 </head>
@@ -90,6 +114,18 @@ $row = mysqli_fetch_array($result);
 $panel_data = unserialize($row['panel_dump']);
 
 mysqli_close($con);
+
+function check($str1,$str2) {
+if (empty($str2)) {$str2 = "NULL";} else {$str2 = $str2;}
+# If the current cell does not contain 'twopole', but the next one does, rowspan
+if ($str1 != "twopole" && $str2 == "twopole") {
+ echo "<td class='circuit' rowspan='2'>".$str1."</td>";}
+# If the current cell does not contain 'threepole', but the next two do, rowspan
+elseif ($str1 != "threepole" && $str2 == "threepole") {
+ echo "<td class='circuit' rowspan='3'>".$str1."</td>";}
+elseif ($str1 == "twopole" || $str1 == "threepole") {echo "";}
+else {echo "<td class='circuit'>".$str1."</td>";}
+}
 ?>
 <table>
 <?php
@@ -104,13 +140,17 @@ echo "
 
 $i = $row['cct_start'];
 
-while ($i <= $row['num_cct']) {
+while ($i < $row['num_cct']) {
  echo "<tr>";
- echo "<td class='circuit'>".$panel_data['cct'.$i]."</td><td class='numbers'>".$i."</td>";
+ if (($i+2) > $row['num_cct']) {$str2 = NULL;} else {$str2 = $panel_data['cct'.($i+2)];}
+ check($panel_data['cct'.$i],$str2);
+ echo "<td class='numbers'>".$i."</td>";
  $i++;
  echo "<td class='spacer'></td>";
- echo "<td class='numbers'>".$i."</td><td class='circuit'>".$panel_data['cct'.$i]."</td>";
- echo "</tr>";
+ echo "<td class='numbers'>".$i."</td>";
+ if (($i+2) > $row['num_cct']) {$str2 = NULL;} else {$str2 = $panel_data['cct'.($i+2)];}
+ check($panel_data['cct'.$i],$str2);
+ echo "</tr>\n";
  $i++;
 }
 ?>
@@ -134,14 +174,12 @@ mysql_close($con);
 
 ?>
 <form action='#' method='post'>
-<fieldset>
-<select class='thebox' size='2' name='job' onchange='showUser(this.value)'>
+<fieldset class='no-border'>
+<select class='thebox' size='2' name='job'<?php if (!empty($storeArray)) {echo " onchange='showUser(this.value)'";} ?>>
 <?php
 if (!empty($storeArray)) {
-foreach ($storeArray as $value) {
-echo "<option value='$value[index]'>$value[job_name]</option>";
-}
-}
+ foreach ($storeArray as $value) {echo "<option value='$value[index]'>$value[job_name]</option>";}
+} else {echo "<option> No jobs in database</option>";}
 ?>
 </select>
 
@@ -149,10 +187,11 @@ echo "<option value='$value[index]'>$value[job_name]</option>";
 <div id="txtGoal">Panels will be listed here.</div>
 
 </fieldset>
-<br/><input style='width: 150px;' type='submit'>
+<br/><input style='width: 150px;' type='submit'<?php if (empty($storeArray)) {echo "disabled";} ?>>
 </form>
-
-<?php } ?>
+<p><a href="./new.php">Enter a new panel/job.</a></p>
+<?php
+} ?>
 
 </body>
 </html>

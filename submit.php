@@ -1,4 +1,9 @@
 <?php
+################################################################
+#              Scripted by: Will Haggerty                      #
+#                  January 13, 2013                            #
+#            Please leave this comment intact                  #
+################################################################ 
 require("./config.php");
 ?>
 <html>
@@ -27,7 +32,9 @@ if (mysqli_connect_errno()) {
  if (!mysqli_query($con, $sql)) {
   die('Error: ' . mysqli_error());
  }
- echo "1 record added";
+ echo "<p>1 record has been added. (".$_POST['panel_name'].")</p>";
+ echo "<p>Do not refresh this page.</p>";
+ echo "<p><a href='view.php'>View</a> or <a href='new.php'>enter</a> a panel</p>";
  mysqli_close($con);
 } else {
  echo "Please <a href='enter.php'>go back</a>\n";
