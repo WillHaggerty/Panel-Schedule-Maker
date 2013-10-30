@@ -19,7 +19,7 @@ if (str=="")
   {
   document.getElementById("txtGoal").innerHTML="";
   return;
-  } 
+  }
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
   xmlhttp=new XMLHttpRequest();
@@ -102,7 +102,7 @@ xmlhttp.send();
 
 <body>
 <?php
-if (isset($_POST['panel_index'])) {
+if (isset($_POST['panel_index']) && is_numeric($_POST['panel_index'])) {
 $con = new mysqli($server['server'],$server['username'],$server['password'],$server['database']);
 if (!$con) {
  die('Could not connect: ' . mysql_error());
@@ -111,7 +111,7 @@ if (!$con) {
 $result = mysqli_query($con, "SELECT * FROM `panels` WHERE `index` = ".$_POST['panel_index']);
 $row = mysqli_fetch_array($result);
 
-$panel_data = unserialize($row['panel_dump']);
+$panel_cct = unserialize($row['panel_cct']);
 
 mysqli_close($con);
 
@@ -142,14 +142,14 @@ $i = $row['cct_start'];
 
 while ($i < $row['num_cct']) {
  echo "<tr>";
- if (($i+2) > $row['num_cct']) {$str2 = NULL;} else {$str2 = $panel_data['cct'.($i+2)];}
- check($panel_data['cct'.$i],$str2);
+ if (($i+2) > $row['num_cct']) {$str2 = NULL;} else {$str2 = $panel_cct['cct'.($i+2)];}
+ check($panel_cct['cct'.$i],$str2);
  echo "<td class='numbers'>".$i."</td>";
  $i++;
  echo "<td class='spacer'></td>";
  echo "<td class='numbers'>".$i."</td>";
- if (($i+2) > $row['num_cct']) {$str2 = NULL;} else {$str2 = $panel_data['cct'.($i+2)];}
- check($panel_data['cct'.$i],$str2);
+ if (($i+2) > $row['num_cct']) {$str2 = NULL;} else {$str2 = $panel_cct['cct'.($i+2)];}
+ check($panel_cct['cct'.$i],$str2);
  echo "</tr>\n";
  $i++;
 }
@@ -173,6 +173,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 mysql_close($con);
 
 ?>
+<h1>Viewing</h1>
 <form action='#' method='post'>
 <fieldset class='no-border'>
 <select class='thebox' size='2' name='job'<?php if (!empty($storeArray)) {echo " onchange='showUser(this.value)'";} ?>>
@@ -190,6 +191,7 @@ if (!empty($storeArray)) {
 <br/><input style='width: 150px;' type='submit'<?php if (empty($storeArray)) {echo "disabled";} ?>>
 </form>
 <p><a href="./new.php">Enter a new panel/job.</a></p>
+<p><a href="./edit.php">Edit a panel.</a></p>
 <?php
 } ?>
 

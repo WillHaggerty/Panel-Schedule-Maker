@@ -14,13 +14,14 @@ if (mysqli_connect_errno()) {
 global $job_num;
 $newjob = 0;
 #$job_num = 2;
-if (!isset($_POST['job-list']) && isset($_POST['job_name'])) {
- $result = mysqli_query($con, "INSERT IGNORE INTO job (`job_name`) VALUES ('".$_POST['job_name']."'), ('".$_POST['job_name']."')");
+if (!isset($_POST['job-list']) && isset($_POST['job_name']) && isset($_POST['num_cct']) && is_numeric($_POST['num_cct'])) {
+ $job_name = htmlentities ( trim( $_POST['job_name'] ), ENT_QUOTES );
+ $result = mysqli_query($con, "INSERT IGNORE INTO job (`job_name`) VALUES ('".$job_name."'), ('".$job_name."')");
  if ($result) {
   $job_num = mysqli_insert_id($con);
   $newjob = 1;
  }
-} elseif (isset($_POST['job-list'])) {
+} elseif (isset($_POST['job-list']) && isset($_POST['num_cct']) && is_numeric($_POST['job-list']) && is_numeric($_POST['num_cct'])) {
  $job_num = $_POST['job-list'];
 } else {
  die('Go Back and try again.');
@@ -117,6 +118,7 @@ Panel name goes here:<br/>
 <input title='Panel Title' type='text' name='panel_name' tabindex='1' required></td>
 <td class='top' colspan='3'>
 <input type='hidden' name='job' value='<?php echo $job_num; ?>'>
+<input type='hidden' name='num_cct' value='<?php echo $_POST['num_cct']; ?>'>
 </td>
 <td class='top right'>
 Panel voltage (or note) goes here:<br/>
@@ -125,7 +127,6 @@ Panel voltage (or note) goes here:<br/>
 </tr>
 
 <?php
-
 $i = 1;
 $cctnumstart = 1;
 $numcct = $_POST['num_cct'];

@@ -63,6 +63,7 @@ mysql_close($con);
 </head>
 
 <body>
+<h1>Adding</h1>
 <form name='add_panel' action='enter.php' method='post'>
 <fieldset class='no-border'>
 <p>Please enter the job name</p>
@@ -82,6 +83,6 @@ foreach ($storeArray as $value) {echo "<option value='$value[index]'>$value[job_
 </fieldset>
 <input style='width: 250px;' type='submit' tabindex='5'>
 </form>
-<p><a href='view.php'>View a panel.</a></p>
+<p><a href='view.php'>View</a> or <a href='edit.php'>Edit</a> a panel</p>
 </body>
 </html>
