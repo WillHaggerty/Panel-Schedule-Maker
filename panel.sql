@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 12, 2013 at 05:55 PM
--- Server version: 5.5.28
--- PHP Version: 5.3.10-1ubuntu3.4
+-- Generation Time: Oct 30, 2013 at 12:03 PM
+-- Server version: 5.5.34
+-- PHP Version: 5.3.10-1ubuntu3.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `job` (
   `job_name` text NOT NULL,
   PRIMARY KEY (`index`),
   UNIQUE KEY `job_name` (`job_name`(127))
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS `panels` (
   `num_cct` smallint(6) NOT NULL,
   `panel_name` text NOT NULL,
   `panel_volt` text NOT NULL,
-  `panel_dump` text NOT NULL,
+  `panel_cct` text NOT NULL,
   PRIMARY KEY (`index`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
