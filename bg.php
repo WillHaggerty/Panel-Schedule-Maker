@@ -7,7 +7,9 @@
 require('config.php');
 
 if (isset($_GET['q'])) {
+
 $theywant = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
+$theywant = (int) $theywant;
 
 $con = new mysqli($server['server'],$server['username'],$server['password'],$server['database']);
 if (mysqli_connect_errno()) {
@@ -23,5 +25,5 @@ while ($row = mysqli_fetch_array($sql, MYSQL_ASSOC)) {
 echo "</select>";
 mysqli_close($con);
 
-}
+} else {echo "Sorry, the input was not understood.";}
 ?>
