@@ -23,7 +23,7 @@ if (isset($_POST['del1']) && isset($_POST['del2']) && isset($_POST['panel_index'
   printf("Connect failed: %s\n", mysqli_connect_error());
   exit();
  }
- $sql="DELETE FROM `panel`.`panels` WHERE `panels`.`index` =".$_POST['panel_index'];
+ $sql="DELETE FROM `panels` WHERE `panels`.`index` =".$_POST['panel_index'];
  if (!mysqli_query($con, $sql)) {
   die('Error: ' . mysqli_error($con));
  }
@@ -49,7 +49,7 @@ elseif (isset($_POST['panel_index']) && is_numeric($_POST['panel_index']) && iss
     exit();
  }
 
- $sql="UPDATE `panel`.`panels`
+ $sql="UPDATE `panels`
  SET `panel_name` = '".$panel_name."',
  `panel_volt` = '".$panel_volt."',
  `panel_cct` = '".$com_panel_cct."'
