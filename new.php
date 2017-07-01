@@ -6,19 +6,19 @@
 ################################################################
 require('config.php');
 
-$con = mysql_connect($server['server'],$server['username'],$server['password']);
+$con = mysqli_connect($server['server'],$server['username'],$server['password'],$server['database']);
 if (!$con) {
- die('Could not connect: ' . mysql_error());
+ die('Could not connect: ' . mysqli_error());
 }
-mysql_select_db($server['database'], $con);
+#mysqli_select_db($server['database'], $con);
 
-$result = mysql_query("SELECT `index`, `job_name` FROM `job`");
+$result = mysqli_query($con,"SELECT `index`, `job_name` FROM `job` ORDER BY `index` DESC");
 $storeArray = Array();
-while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+while ($row = mysqli_fetch_array($result)) {
  $storeArray[] = $row;
 }
 
-mysql_close($con);
+mysqli_close($con);
 
 ?>
 <!doctype html>

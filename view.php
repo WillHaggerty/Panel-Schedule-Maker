@@ -85,13 +85,14 @@ xmlhttp.send();
 }
 .thebox {
  float: left;
- min-width: 200px;
- height: 200px;
+ min-width: 250px;
+ height: 300px;
  font-size: 14px;
+ margin-right: 10px;
 }
 .panelbox {
- min-width: 200px;
- height: 200px;
+ min-width: 250px;
+ height: 300px;
  font-size: 14px;
 }
 .no-border {
@@ -105,7 +106,7 @@ xmlhttp.send();
 if (isset($_POST['panel_index']) && is_numeric($_POST['panel_index'])) {
 $con = new mysqli($server['server'],$server['username'],$server['password'],$server['database']);
 if (!$con) {
- die('Could not connect: ' . mysql_error());
+ die('Could not connect: ' . mysqli_error());
 }
 
 $result = mysqli_query($con, "SELECT * FROM `panels` WHERE `index` = ".$_POST['panel_index']);
@@ -158,19 +159,19 @@ while ($i < $row['num_cct']) {
 <?php
 } else {
 
-$con = mysql_connect($server['server'],$server['username'],$server['password']);
+$con = mysqli_connect($server['server'],$server['username'],$server['password'],$server['database']);
 if (!$con) {
- die('Could not connect: ' . mysql_error());
+ die('Could not connect: ' . mysqli_error());
 }
-mysql_select_db($server['database'], $con);
+#mysqli_select_db($server['database'], $con);
 
-$result = mysql_query("SELECT `index`, `job_name` FROM `job`");
+$result = mysqli_query($con,"SELECT `index`, `job_name` FROM `job` ORDER BY `index` DESC");
 $storeArray = Array();
-while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+while ($row = mysqli_fetch_array($result)) {
  $storeArray[] = $row;
 }
 
-mysql_close($con);
+mysqli_close($con);
 
 ?>
 <h1>Viewing</h1>
