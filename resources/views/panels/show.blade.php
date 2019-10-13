@@ -2,7 +2,7 @@
 
 @section('title', ': Jobs')
 
-@section('panelCreateLink', '/jobs/'.$job->id.'/panels/create')
+@section('panelCreateLink', url('/jobs').'/'.$job->id.'/panels/create')
 
 @section('head-css')
 <link href="{{ asset('css/print.css') }}" media="print" rel="stylesheet">
@@ -19,12 +19,12 @@
 @section('recentJobs')
 @if (isset($job))
 <h6 class="dropdown-header">This Job</h6>
-<a class="dropdown-item" href="/jobs/{{ $job->id }}">{{ $job->name }}</a>
+<a class="dropdown-item" href="{{ url('/jobs') }}/{{ $job->id }}">{{ $job->name }}</a>
 @endif
 @if ($recentJobs->count())
 <h6 class="dropdown-header">Recently Modified</h6>
 @foreach ($recentJobs as $joblist)
-<a class="dropdown-item" href="/jobs/{{ $joblist->id }}">{{ $joblist->name }}</a>
+<a class="dropdown-item" href="{{ url('/jobs') }}/{{ $joblist->id }}">{{ $joblist->name }}</a>
 @endforeach
 @endif
 @endsection
@@ -33,7 +33,7 @@
 @if ($job->recentPanels->count())
 <h6 class="dropdown-header">Recently Modified</h6>
 @foreach ($job->recentPanels as $panelList)
-<a class="dropdown-item" href="/jobs/{{ $job->id }}/panels/{{ $panelList->id }}">{{ $panelList->name }}</a>
+<a class="dropdown-item" href="{{ url('/jobs') }}/{{ $job->id }}/panels/{{ $panelList->id }}">{{ $panelList->name }}</a>
 @endforeach
 @endif
 @endsection
@@ -46,7 +46,7 @@
         <div class="float-left h5 mt-2">{{ $panel->name }}, {{ $job->name }}</div>
         <div class="float-right">
           <a class="btn print-window" style="font-size: 14pt;" href="#">&#128424;</a>
-          <a class="btn btn-info" href="/jobs/{{ $job->id }}/panels">Panel List</a>
+          <a class="btn btn-info" href="{{ url('/jobs') }}/{{ $job->id }}/panels">Panel List</a>
         </div>
       </div>
       <div class="card-body">
@@ -65,13 +65,13 @@
       @endif
       <div class="card-footer">
         <div class="float-left">
-          <a class="btn btn-success" href="/jobs/{{ $job->id }}/panels/{{ $panel->id }}/circuits/edit" role="button">Edit circuits</a>
+          <a class="btn btn-success" href="{{ url('/jobs') }}/{{ $job->id }}/panels/{{ $panel->id }}/circuits/edit" role="button">Edit circuits</a>
         </div>
         <div class="float-right">
-          <form method="POST" action="/jobs/{{ $job->id }}/panels/{{ $panel->id }}">
+          <form method="POST" action="{{ url('/jobs') }}/{{ $job->id }}/panels/{{ $panel->id }}">
             @method('DELETE')
             @csrf
-            <a class="btn btn-primary" href="/jobs/{{ $job->id }}/panels/{{ $panel->id }}/edit" role="button">Edit panel</a>
+            <a class="btn btn-primary" href="{{ url('/jobs') }}/{{ $job->id }}/panels/{{ $panel->id }}/edit" role="button">Edit panel</a>
             <button class="btn btn-danger" onClick="return confirm('Are you sure you want to delete this panel? This will also delete ALL associated circuits!')">Delete panel</button>
           </form>
         </div>

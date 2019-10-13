@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="/home">{{ config('app.name') }}</a>
+    <a class="navbar-brand" href="{{ url('/home') }}">{{ config('app.name') }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,18 +10,18 @@
         @guest
         @else
         <li class="nav-item">
-          <a class="nav-link" href="/home">Home</a>
+          <a class="nav-link" href="{{ url('/home') }}">Home</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/jobs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jobs</a>
+          <a class="nav-link dropdown-toggle" href="{{ url('/jobs') }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jobs</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/jobs">View All Jobs</a>
-            <a class="dropdown-item" href="/jobs/create">Add Job</a>
+            <a class="dropdown-item" href="{{ url('/jobs') }}">View All Jobs</a>
+            <a class="dropdown-item" href="{{ url('/jobs/create') }}">Add Job</a>
             @yield('recentJobs')
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/panels" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Panels</a>
+          <a class="nav-link dropdown-toggle" href="{{ url('/panels') }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Panels</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="@yield('panelCreateLink', '#')">Add a Panel</a>
             @yield('recentPanels')

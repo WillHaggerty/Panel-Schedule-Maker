@@ -2,17 +2,17 @@
 
 @section('title', ': Jobs')
 
-@section('panelCreateLink', '/jobs/'.$job->id.'/panels/create')
+@section('panelCreateLink', url('/jobs').'/'.$job->id.'/panels/create')
 
 @section('recentJobs')
 @if ($job)
 <h6 class="dropdown-header">This Job</h6>
-<a class="dropdown-item" href="/jobs/{{ $job->id }}">{{ $job->name }}</a>
+<a class="dropdown-item" href="{{ url('/jobs') }}/{{ $job->id }}">{{ $job->name }}</a>
 @endif
 @if ($recentJobs->count())
 <h6 class="dropdown-header">Recently Modified</h6>
 @foreach ($recentJobs as $joblist)
-<a class="dropdown-item" href="/jobs/{{ $joblist->id }}">{{ $joblist->name }}</a>
+<a class="dropdown-item" href="{{ url('/jobs') }}/{{ $joblist->id }}">{{ $joblist->name }}</a>
 @endforeach
 @endif
 @endsection
@@ -21,7 +21,7 @@
 @if ($job->recentPanels->count())
 <h6 class="dropdown-header">Recently Modified</h6>
 @foreach ($job->recentPanels as $panelList)
-<a class="dropdown-item" href="/jobs/{{ $job->id }}/panels/{{ $panelList->id }}">{{ $panelList->name }}</a>
+<a class="dropdown-item" href="{{ url('/jobs') }}/{{ $job->id }}/panels/{{ $panelList->id }}">{{ $panelList->name }}</a>
 @endforeach
 @endif
 @endsection
@@ -31,7 +31,7 @@
   <div class="col-md-8">
     <div class="card">
       <div class="card-header">{{ $job->name }}: Add a Panel</div>
-      <form class="" action="/jobs/{{ $job->id }}/panels" method="post">
+      <form class="" action="{{ url('/jobs') }}/{{ $job->id }}/panels" method="post">
         <div class="card-body">
           @csrf
 

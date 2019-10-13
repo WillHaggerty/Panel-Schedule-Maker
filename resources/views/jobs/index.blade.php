@@ -6,7 +6,7 @@
 @if ($recentJobs->count())
 <h6 class="dropdown-header">Recently Modified</h6>
 @foreach ($recentJobs as $job)
-<a class="dropdown-item" href="/jobs/{{ $job->id }}">{{ $job->name }}</a>
+<a class="dropdown-item" href="{{ url('/jobs') }}/{{ $job->id }}">{{ $job->name }}</a>
 @endforeach
 @endif
 @endsection
@@ -21,7 +21,7 @@
         <div class="card-body">
           <ul>
             @foreach ($jobs as $job)
-            <li><a href="jobs/{{ $job->id }}">{{ $job->name }}</a></li>
+            <li><a href="{{ url('/jobs') }}/{{ $job->id }}">{{ $job->name }}</a></li>
             @endforeach
           </ul>
         </div>
@@ -31,7 +31,7 @@
         </div>
         @endif
         <div class="card-footer">
-          <div class="float-right"><a class="btn btn-success" href="/jobs/create">Add job</a></div>
+          <div class="float-right"><a class="btn btn-success" href="{{ url('/jobs/create') }}">Add job</a></div>
         </div>
       </div>
     </div>

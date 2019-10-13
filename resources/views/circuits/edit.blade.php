@@ -15,7 +15,7 @@
             @for ($a = 1, $b = $panel->circuit_count_ab + 1, $c = 1, $i = 1; $i <= $panel->circuit_count; $i++)
             <tr>
               <td>
-                <form class="{{ isset($panelCircuits[$c]) ? 'update' : 'create' }}" action="/jobs/{{ $job->id }}/panels/{{ $panel->id }}/circuits/{{ isset($panelCircuits[$c]) ? $panelCircuits[$c]->id : 'create' }}" method="post">
+                <form class="{{ isset($panelCircuits[$c]) ? 'update' : 'create' }}" action="{{ url('/jobs') }}/{{ $job->id }}/panels/{{ $panel->id }}/circuits/{{ isset($panelCircuits[$c]) ? $panelCircuits[$c]->id : 'create' }}" method="post">
                   <div class="form-group row">
                     @if (isset($panelCircuits[$c]))
                     @method('patch')
@@ -44,7 +44,7 @@
               <td>A</td>
               @endif
               <td>
-                <form class="{{ isset($panelCircuits[$c]) ? 'update' : 'create' }}" action="/jobs/{{ $job->id }}/panels/{{ $panel->id }}/circuits/{{ isset($panelCircuits[$c]) ? $panelCircuits[$c]->id : 'create' }}" method="post">
+                <form class="{{ isset($panelCircuits[$c]) ? 'update' : 'create' }}" action="{{ url('/jobs') }}/{{ $job->id }}/panels/{{ $panel->id }}/circuits/{{ isset($panelCircuits[$c]) ? $panelCircuits[$c]->id : 'create' }}" method="post">
                   <div class="form-group row">
                     @if (isset($panelCircuits[$c]))
                     @method('patch')
@@ -70,7 +70,7 @@
             </tr>
             @if ($panel->ab == 1)
             <tr>
-              <td><form class="{{ isset($panelCircuits[$c]) ? 'update' : 'create' }}" action="/jobs/{{ $job->id }}/panels/{{ $panel->id }}/circuits/{{ isset($panelCircuits[$c]) ? $panelCircuits[$c]->id : 'create' }}" method="post">
+              <td><form class="{{ isset($panelCircuits[$c]) ? 'update' : 'create' }}" action="{{ url('/jobs') }}/{{ $job->id }}/panels/{{ $panel->id }}/circuits/{{ isset($panelCircuits[$c]) ? $panelCircuits[$c]->id : 'create' }}" method="post">
                 <div class="form-group row">
                   @if (isset($panelCircuits[$c]))
                   @method('patch')
@@ -92,7 +92,7 @@
               </form></td>
               <td class="text-right">B</td>
               <td>B</td>
-              <td><form class="{{ isset($panelCircuits[$c]) ? 'update' : 'create' }}" action="/jobs/{{ $job->id }}/panels/{{ $panel->id }}/circuits/{{ isset($panelCircuits[$c]) ? $panelCircuits[$c]->id : 'create' }}" method="post">
+              <td><form class="{{ isset($panelCircuits[$c]) ? 'update' : 'create' }}" action="{{ url('/jobs') }}/{{ $job->id }}/panels/{{ $panel->id }}/circuits/{{ isset($panelCircuits[$c]) ? $panelCircuits[$c]->id : 'create' }}" method="post">
                 <div class="form-group row">
                   @if (isset($panelCircuits[$c]))
                   @method('patch')
@@ -150,7 +150,7 @@ window.onload = function () {
         data: form.serialize(),
         success: function(response) {
           form.toggleClass('update create');
-          form.attr('action', "/jobs/{{ $job->id }}/panels/{{ $panel->id }}/circuits/create");
+          form.attr('action', "{{ url('/jobs') }}/{{ $job->id }}/panels/{{ $panel->id }}/circuits/create");
           console.log("Successfully deleted");
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -176,7 +176,7 @@ window.onload = function () {
           data: form.serialize(),
           success: function(response) {
               form.toggleClass('create update');
-              form.attr('action', "/jobs/{{ $job->id }}/panels/{{ $panel->id }}/circuits/" + response['circuit_id']);
+              form.attr('action', "{{ url('/jobs') }}/{{ $job->id }}/panels/{{ $panel->id }}/circuits/" + response['circuit_id']);
               console.log(response['circuit_id']);
             },
           error: function(jqXHR, textStatus, errorThrown) {

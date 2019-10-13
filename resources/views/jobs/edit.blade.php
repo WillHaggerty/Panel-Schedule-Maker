@@ -7,7 +7,7 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">Add a Job</div>
-        <form class="" action="/jobs/{{ $job->id }}" method="post">
+        <form class="" action="{{ url('/jobs') }}/{{ $job->id }}" method="post">
           <div class="card-body">
             @method('patch')
             @csrf
