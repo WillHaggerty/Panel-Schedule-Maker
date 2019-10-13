@@ -2,6 +2,21 @@
 
 @section('title', ': Editing Panel Circuits')
 
+@section('head-css')
+<style type="text/css">
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.1) url("{{ url('/images/ajax-loader.gif') }}") 50% 50% no-repeat;
+      }
+    </style>
+@endsection
+
 @section('content')
   <div class="row justify-content-center">
     <div class="col-md-12">
@@ -129,7 +144,7 @@
 @endsection
 
 @section('footer')
-<div class="modal" style="background: rgba(255, 255, 255, 0.1) url("{{ url('/images/ajax-loader.gif') }}") 50% 50% no-repeat;"></div>
+<div class="modal"></div>
 @endsection
 
 @section('script')
