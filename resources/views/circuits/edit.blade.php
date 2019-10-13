@@ -129,7 +129,7 @@
 @endsection
 
 @section('footer')
-<div class="modal"></div>
+<div class="modal" style="background: rgba(255, 255, 255, 0.1) url("{{ url('/images/ajax-loader.gif') }}") 50% 50% no-repeat;"></div>
 @endsection
 
 @section('script')
