@@ -28,7 +28,7 @@
     <div class="container" id="app">
       @yield('content')
     </div>
-    @yield('footer')
     @yield('script')
+    @include('inc.footer')
   </body>
 </html>
