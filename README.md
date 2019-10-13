@@ -7,7 +7,7 @@ Requirements:
 
 -- Apache w/PHP & MySQL/MariaDB
 
--- Allow the use of .htaccess in "public"
+-- Allow the use of .htaccess in "public". You may also need to add "Options FollowSymLinks" to the apache config for your directory.
 
 To install:
 
