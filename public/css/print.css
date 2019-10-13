@@ -1,0 +1,54 @@
+
+@media print {
+  body {
+    line-height: 1;
+    background: #fff !important;
+    color: #000;
+    font-size: 1.2rem;
+  }
+  nav, footer {
+    display: none;
+  }
+  .card-header {
+    display: none;
+  }
+  .card-body {
+    display: none;
+  }
+  .card-footer {
+    display: none;
+  }
+  .panel {
+    display: block;
+    padding: 0px;
+    width: 108mm;
+    /* width: 150mm; */
+  }
+  .card {
+    border: 0px;
+  }
+  .col-md-8 {
+    max-width: none;
+    flex: none;
+  }
+  .lead {
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  .table-bordered td, .table-bordered th {
+    border-color: #000 !important;
+  }
+  .circuit-td {
+    /* width: 70mm; */
+    /* width: 70mm; */
+  }
+  .circuit-letter {
+    font-size: 1rem;
+  }
+  .circuit-numbers {
+    font-size: 1rem;
+  }
+  .circuit-name {
+    width: 38%;
+  }
+}
