@@ -17,7 +17,7 @@ To install:
 
 -- After cloning, run "composer install". This will install the dependencies for laravel.
 
--- Then rename ".env.example" to ".env" and open the file to input your SQL DB creds.
+-- Then rename ".env.example" to ".env" and open the file to input your SQL DB creds. You should also set your APP_URL at this time.
 
 -- Then run "php artisan key:generate".
 
