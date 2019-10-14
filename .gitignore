@@ -11,3 +11,6 @@ npm-debug.log
 yarn-error.log
 .ftpconfig
 .ftpignore
+.gitignore
+.editorconfig
+.gitattributes
