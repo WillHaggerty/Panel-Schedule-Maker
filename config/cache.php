@@ -13,6 +13,8 @@ return [
     | using this caching library. This connection is used when another is
     | not explicitly specified when executing a given caching function.
     |
+    | Supported: "apc", "array", "database", "file", "memcached", "redis"
+    |
     */
 
     'default' => env('CACHE_DRIVER', 'file'),
@@ -26,9 +28,6 @@ return [
     | well as their drivers. You may even define multiple stores for the
     | same cache driver to group types of items stored in your caches.
     |
-    | Supported drivers: "apc", "array", "database", "file",
-    |            "memcached", "redis", "dynamodb", "null"
-    |
     */
 
     'stores' => [
@@ -39,7 +38,6 @@ return [
 
         'array' => [
             'driver' => 'array',
-            'serialize' => false,
         ],
 
         'database' => [
@@ -75,15 +73,6 @@ return [
         'redis' => [
             'driver' => 'redis',
             'connection' => 'cache',
-        ],
-
-        'dynamodb' => [
-            'driver' => 'dynamodb',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
-            'table' => env('DYNAMODB_CACHE_TABLE', 'cache'),
-            'endpoint' => env('DYNAMODB_ENDPOINT'),
         ],
 
     ],
