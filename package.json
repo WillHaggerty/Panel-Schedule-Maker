@@ -27,7 +27,7 @@
   "dependencies": {
     "kind-of": "6.0.3",
     "minimist": "1.2.5",
-    "node-forge": "^0.10.0",
+    "node-forge": "^1.0.0",
     "object-path": "^0.11.5",
     "serialize-javascript": "^3.1.0"
   }
