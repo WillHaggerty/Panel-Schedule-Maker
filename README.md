@@ -11,7 +11,7 @@ Requirements:
 
 To install:
 
--- Clone the MASTER branch using "git clone https://github.com/atallguy89/Panel-Schedule-Maker.git" to a folder that is not being served by a webserver (ie: /var/www, not /var/www/html).
+-- Clone the MASTER branch using "git clone https://github.com/WillHaggerty/Panel-Schedule-Maker.git" to a folder that is not being served by a webserver (ie: /var/www, not /var/www/html).
 
 -- Ensure that the "storage" directory is writable by the server.
 
